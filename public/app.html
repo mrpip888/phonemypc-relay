@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>PhoneMyPC</title>
-    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==">
     <style>
         * {
             margin: 0;
@@ -15,15 +12,13 @@
             box-sizing: border-box;
             -webkit-user-select: none;
             user-select: none;
-            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            font-family: system-ui, -apple-system, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             color: white;
-            overflow-x: hidden;
         }
 
         .container {
@@ -46,21 +41,11 @@
             display: inline-block;
             padding: 6px 16px;
             border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
+            font-size: 14px;
             background: rgba(255,255,255,0.2);
-            transition: 0.3s;
         }
 
-        .status.online { 
-            background: #10b981;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
+        .status.online { background: #10b981; }
 
         .card {
             background: rgba(255,255,255,0.15);
@@ -68,15 +53,11 @@
             border-radius: 16px;
             padding: 20px;
             margin-bottom: 16px;
-            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .card h3 {
             margin-bottom: 16px;
             font-size: 18px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         input, button {
@@ -86,23 +67,15 @@
             border-radius: 10px;
             font-size: 16px;
             margin-bottom: 12px;
-            font-family: inherit;
         }
 
         input {
-            background: rgba(255,255,255,0.25);
+            background: rgba(255,255,255,0.2);
             color: white;
-            border: 1px solid rgba(255,255,255,0.3);
         }
 
         input::placeholder {
             color: rgba(255,255,255,0.6);
-        }
-
-        input:focus {
-            outline: none;
-            background: rgba(255,255,255,0.3);
-            border-color: rgba(255,255,255,0.5);
         }
 
         button {
@@ -111,58 +84,39 @@
             font-weight: 600;
             cursor: pointer;
             transition: 0.2s;
-            border: none;
         }
 
         button:active {
             transform: scale(0.98);
-            background: #059669;
         }
 
         button.secondary {
             background: #6366f1;
         }
 
-        button.secondary:active {
-            background: #4f46e5;
-        }
-
         button.danger {
             background: #ef4444;
-        }
-
-        button.danger:active {
-            background: #dc2626;
-        }
-
-        button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
         }
 
         .computer-list {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            max-height: 400px;
-            overflow-y: auto;
         }
 
         .computer-item {
             background: rgba(255,255,255,0.1);
             padding: 16px;
-            border-radius: 12px;
+            border-radius: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
             transition: 0.2s;
-            border: 2px solid transparent;
         }
 
         .computer-item:active {
             background: rgba(255,255,255,0.25);
-            transform: scale(0.98);
         }
 
         .computer-item.offline {
@@ -188,7 +142,7 @@
             width: 100%;
             aspect-ratio: 16/9;
             background: #000;
-            border-radius: 12px;
+            border-radius: 10px;
             overflow: hidden;
             position: relative;
             touch-action: none;
@@ -206,22 +160,6 @@
             left: 50%;
             transform: translate(-50%, -50%);
             color: #888;
-            text-align: center;
-        }
-
-        .spinner {
-            border: 3px solid rgba(255,255,255,0.3);
-            border-top: 3px solid white;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 10px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         .controls {
@@ -232,20 +170,17 @@
         }
 
         .control-btn {
-            padding: 14px 8px;
-            background: rgba(255,255,255,0.25);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 10px;
+            padding: 16px 8px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 8px;
             color: white;
             font-size: 14px;
             cursor: pointer;
-            transition: 0.2s;
-            font-weight: 500;
         }
 
         .control-btn:active {
             background: rgba(255,255,255,0.4);
-            transform: scale(0.95);
         }
 
         .keyboard {
@@ -253,13 +188,12 @@
             gap: 6px;
             padding: 12px;
             background: rgba(0,0,0,0.3);
-            border-radius: 12px;
+            border-radius: 10px;
         }
 
         .key-row {
             display: flex;
             gap: 6px;
-            justify-content: center;
         }
 
         .key {
@@ -267,20 +201,17 @@
             padding: 12px 4px;
             background: rgba(255,255,255,0.25);
             border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 8px;
+            border-radius: 6px;
             text-align: center;
             font-size: 13px;
             cursor: pointer;
-            transition: 0.1s;
-            font-weight: 600;
         }
 
         .key:active {
             background: rgba(255,255,255,0.5);
-            transform: scale(0.95);
         }
 
-        .hide { display: none !important; }
+        .hide { display: none; }
 
         .message {
             text-align: center;
@@ -288,26 +219,6 @@
             background: rgba(0,0,0,0.3);
             border-radius: 8px;
             margin-bottom: 12px;
-            font-size: 14px;
-            animation: fadeIn 0.3s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 40px 20px;
-            opacity: 0.7;
-        }
-
-        .empty-state svg {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 16px;
-            opacity: 0.5;
         }
     </style>
 </head>
@@ -315,58 +226,56 @@
     <div class="container">
         <div class="header">
             <h1>📱 PhoneMyPC</h1>
-            <div class="status" id="status">Đang kết nối...</div>
+            <div class="status" id="status">Offline</div>
         </div>
 
         <div id="message" class="message hide"></div>
 
+        <!-- Setup Screen -->
+        <div id="setupScreen">
+            <div class="card">
+                <h3>⚙️ Cấu hình Server</h3>
+                <input type="text" id="serverUrl" placeholder="https://phonemypc-relay.onrender.com/" value="https://phonemypc-relay.onrender.com/">
+                <button onclick="connectToServer()">Kết nối Server</button>
+            </div>
+        </div>
+
         <!-- Computer List Screen -->
-        <div id="listScreen">
+        <div id="listScreen" class="hide">
             <div class="card">
                 <h3>💻 Danh sách máy tính</h3>
-                <div id="computerList" class="computer-list">
-                    <div class="empty-state">
-                        <div class="spinner"></div>
-                        <div>Đang tải danh sách...</div>
-                    </div>
-                </div>
+                <div id="computerList" class="computer-list"></div>
             </div>
-            <button class="secondary" onclick="refreshList()">🔄 Làm mới danh sách</button>
+            <button class="secondary" onclick="refreshList()">🔄 Làm mới</button>
         </div>
 
         <!-- Control Screen -->
         <div id="controlScreen" class="hide">
             <div class="card">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                    <h3 id="currentPC" style="margin: 0;">💻 Máy tính</h3>
-                    <button class="danger" onclick="disconnectPC()" style="width: auto; padding: 10px 20px; margin: 0; font-size: 14px;">
-                        ❌ Ngắt
-                    </button>
+                    <h3 id="currentPC">Máy tính</h3>
+                    <button class="danger" onclick="disconnectPC()" style="width: auto; padding: 8px 16px; margin: 0;">Ngắt</button>
                 </div>
 
                 <div class="screen-container" id="screenContainer"
                      ontouchstart="handleTouch(event)"
                      ontouchmove="handleMove(event)"
                      ontouchend="handleEnd(event)">
-                    <div class="loading">
-                        <div class="spinner"></div>
-                        <div>Đang tải màn hình...</div>
-                    </div>
+                    <div class="loading">Đang tải...</div>
                 </div>
 
                 <div class="controls">
-                    <button class="control-btn" onclick="mouseClick('left')">🖱️ Click Trái</button>
-                    <button class="control-btn" onclick="mouseDoubleClick()">⚡ Double Click</button>
-                    <button class="control-btn" onclick="mouseClick('right')">🖱️ Click Phải</button>
-                    <button class="control-btn" onclick="scroll(5)">⬆️ Scroll Up</button>
+                    <button class="control-btn" onclick="mouseClick('left')">Click Trái</button>
+                    <button class="control-btn" onclick="mouseDoubleClick()">Double</button>
+                    <button class="control-btn" onclick="mouseClick('right')">Click Phải</button>
+                    <button class="control-btn" onclick="scroll(5)">⬆️ Scroll</button>
                     <button class="control-btn" onclick="toggleKeyboard()">⌨️ Bàn phím</button>
-                    <button class="control-btn" onclick="scroll(-5)">⬇️ Scroll Down</button>
+                    <button class="control-btn" onclick="scroll(-5)">⬇️ Scroll</button>
                 </div>
             </div>
 
             <!-- Keyboard -->
             <div id="keyboard" class="card hide">
-                <h3>⌨️ Bàn phím ảo</h3>
                 <div class="keyboard">
                     <div class="key-row">
                         <div class="key" onclick="typeKey('1')">1</div>
@@ -429,8 +338,8 @@
                         <div class="key" onclick="pressKey('right')">➡️</div>
                     </div>
                 </div>
-                <input type="text" placeholder="Hoặc nhập text ở đây và nhấn Enter..." id="textInput" 
-                       onkeypress="if(event.key==='Enter') sendText()">
+                <input type="text" placeholder="Hoặc nhập text ở đây..." id="textInput" 
+                       style="margin-top: 12px;" onkeypress="if(event.key==='Enter') sendText()">
             </div>
         </div>
     </div>
@@ -440,7 +349,7 @@
         let socket = null;
         let currentComputer = null;
         let screenInterval = null;
-        const serverUrl = window.location.origin; // Tự động lấy URL hiện tại
+        let serverUrl = '';
 
         function showMessage(msg, duration = 3000) {
             const el = document.getElementById('message');
@@ -455,46 +364,51 @@
             el.className = 'status' + (online ? ' online' : '');
         }
 
-        function initSocket() {
+        function connectToServer() {
+            serverUrl = document.getElementById('serverUrl').value.trim();
+            if (!serverUrl) {
+                showMessage('Vui lòng nhập URL server');
+                return;
+            }
+
             setStatus('Đang kết nối...');
             
-            socket = io(serverUrl, {
-                transports: ['websocket', 'polling'],
-                reconnection: true,
-                reconnectionDelay: 1000,
-                reconnectionAttempts: 10
-            });
+            try {
+                socket = io(serverUrl, {
+                    transports: ['websocket', 'polling'],
+                    reconnection: true
+                });
 
-            socket.on('connect', () => {
-                setStatus('Online', true);
-                showMessage('✅ Kết nối server thành công!');
-                loadComputerList();
-            });
-
-            socket.on('disconnect', () => {
-                setStatus('Mất kết nối');
-                showMessage('⚠️ Mất kết nối server');
-            });
-
-            socket.on('connect_error', (error) => {
-                setStatus('Lỗi kết nối');
-                showMessage('❌ Không thể kết nối server');
-                console.error('Connection error:', error);
-            });
-
-            socket.on('computers_updated', () => {
-                if (!currentComputer) {
+                socket.on('connect', () => {
+                    setStatus('Đã kết nối', true);
+                    showMessage('Kết nối server thành công!');
+                    document.getElementById('setupScreen').classList.add('hide');
+                    document.getElementById('listScreen').classList.remove('hide');
                     loadComputerList();
-                }
-            });
+                });
 
-            socket.on('command_response', (response) => {
-                handleResponse(response);
-            });
+                socket.on('disconnect', () => {
+                    setStatus('Mất kết nối');
+                    showMessage('Mất kết nối server');
+                });
 
-            socket.on('error', (data) => {
-                showMessage('❌ Lỗi: ' + data.message);
-            });
+                socket.on('connect_error', (error) => {
+                    setStatus('Lỗi kết nối');
+                    showMessage('Không thể kết nối. Kiểm tra URL server');
+                    console.error(error);
+                });
+
+                socket.on('computers_updated', () => {
+                    loadComputerList();
+                });
+
+                socket.on('command_response', (response) => {
+                    handleResponse(response);
+                });
+
+            } catch (error) {
+                showMessage('Lỗi: ' + error.message);
+            }
         }
 
         async function loadComputerList() {
@@ -504,60 +418,40 @@
                 
                 const listEl = document.getElementById('computerList');
                 
-                if (!data.computers || data.computers.length === 0) {
-                    listEl.innerHTML = `
-                        <div class="empty-state">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="2" y="3" width="20" height="14" rx="2"/>
-                                <line x1="8" y1="21" x2="16" y2="21"/>
-                                <line x1="12" y1="17" x2="12" y2="21"/>
-                            </svg>
-                            <div>Chưa có máy tính nào online</div>
-                            <div style="margin-top: 8px; font-size: 13px;">Hãy chạy Windows Client trước</div>
-                        </div>
-                    `;
+                if (data.computers.length === 0) {
+                    listEl.innerHTML = '<div style="text-align: center; opacity: 0.6; padding: 20px;">Chưa có máy tính nào online.<br>Hãy chạy Windows Client trước.</div>';
                     return;
                 }
 
                 listEl.innerHTML = data.computers.map(pc => `
-                    <div class="computer-item ${pc.online ? '' : 'offline'}" 
-                         onclick="connectToComputer('${pc.id}', '${pc.name}')">
+                    <div class="computer-item ${pc.online ? '' : 'offline'}" onclick="connectToComputer('${pc.id}', '${pc.name}')">
                         <div class="computer-info">
                             <div class="computer-name">${pc.name}</div>
-                            <div class="computer-status">
-                                ${pc.os} • ${pc.screen_width}x${pc.screen_height} • 
-                                ${pc.online ? '🟢 Online' : '⚫ Offline'}
-                            </div>
+                            <div class="computer-status">${pc.os} • ${pc.online ? 'Online' : 'Offline'}</div>
                         </div>
-                        <div style="font-size: 32px;">${pc.online ? '🟢' : '⚫'}</div>
+                        <div style="font-size: 24px;">${pc.online ? '🟢' : '⚫'}</div>
                     </div>
                 `).join('');
                 
             } catch (error) {
-                showMessage('❌ Lỗi tải danh sách');
-                console.error('Load error:', error);
+                showMessage('Lỗi tải danh sách');
             }
         }
 
         function refreshList() {
-            showMessage('🔄 Đang làm mới...');
+            showMessage('Đang làm mới...');
             loadComputerList();
         }
 
         function connectToComputer(id, name) {
-            if (!socket || !socket.connected) {
-                showMessage('❌ Chưa kết nối server');
-                return;
-            }
-
             currentComputer = { id, name };
             socket.emit('connect_to_computer', { computer_id: id });
             
             document.getElementById('listScreen').classList.add('hide');
             document.getElementById('controlScreen').classList.remove('hide');
-            document.getElementById('currentPC').textContent = '💻 ' + name;
+            document.getElementById('currentPC').textContent = name;
             
-            showMessage('✅ Đã kết nối: ' + name);
+            showMessage('Đã kết nối: ' + name);
             startScreenStream();
         }
 
@@ -572,7 +466,7 @@
             document.getElementById('listScreen').classList.remove('hide');
             document.getElementById('keyboard').classList.add('hide');
             
-            showMessage('✅ Đã ngắt kết nối');
+            showMessage('Đã ngắt kết nối');
             loadComputerList();
         }
 
@@ -592,7 +486,6 @@
             if (screenInterval) clearInterval(screenInterval);
             
             const capture = () => {
-                if (!currentComputer) return;
                 sendCommand({ type: 'screenshot', quality: 'medium', show_cursor: true });
             };
             
@@ -618,8 +511,8 @@
             
             const touch = e.touches[0];
             const rect = e.target.getBoundingClientRect();
-            const x = Math.max(0, Math.min(1, (touch.clientX - rect.left) / rect.width));
-            const y = Math.max(0, Math.min(1, (touch.clientY - rect.top) / rect.height));
+            const x = (touch.clientX - rect.left) / rect.width;
+            const y = (touch.clientY - rect.top) / rect.height;
             
             sendCommand({ type: 'mouse_move', x, y });
         }
@@ -661,14 +554,8 @@
             if (input.value) {
                 sendCommand({ type: 'type_text', text: input.value });
                 input.value = '';
-                showMessage('✅ Đã gửi text');
             }
         }
-
-        // Tự động kết nối khi load trang
-        window.addEventListener('load', () => {
-            initSocket();
-        });
     </script>
 </body>
 </html>
