@@ -20,6 +20,9 @@ const io = socketIO(server, {
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.static('public'));
+app.get('/app', (req, res) => {
+    res.sendFile(__dirname + '/public/app.html');
+});
 
 // Lưu danh sách máy tính đang online
 const computers = new Map();
