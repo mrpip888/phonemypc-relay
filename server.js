@@ -98,7 +98,7 @@ app.get('/', (req, res) => {
             </style>
         </head>
         <body>
-            <div class="container">
+            <!--<div class="container">
                 <h1>🚀 PhoneMyPC Server</h1>
                 <div class="status">✅ Server đang hoạt động</div>
                 
@@ -121,7 +121,7 @@ app.get('/', (req, res) => {
 
                 <a href="/app">📱 Mở Android App</a>
                 <a href="/api/computers">📊 API Computers</a>
-            </div>
+            </div>-->
         </body>
         </html>
     `);
